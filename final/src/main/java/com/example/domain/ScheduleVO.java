@@ -1,8 +1,16 @@
 package com.example.domain;
 
 public class ScheduleVO {
-	private String terminal_code, platform_code, schedule_start, schedule_driver;
-	private int schedule_price;
+	private String terminal_code, platform_code, schedule_start, schedule_driver, bus_code;
+	private int schedule_price, bus_tier;
+
+	public int getBus_tier() {
+		return bus_tier;
+	}
+
+	public void setBus_tier(int bus_tier) {
+		this.bus_tier = bus_tier;
+	}
 
 	public String getTerminal_code() {
 		return terminal_code;
@@ -47,7 +55,8 @@ public class ScheduleVO {
 	@Override
 	public String toString() {
 		return "ScheduleVO [terminal_code=" + terminal_code + ", platform_code=" + platform_code + ", schedule_start="
-				+ schedule_start + ", schedule_driver=" + schedule_driver + ", schedule_price=" + schedule_price + "]";
+				+ schedule_start + ", schedule_driver=" + schedule_driver + ", bus_code=" + bus_code
+				+ ", schedule_price=" + schedule_price + ", bus_tier=" + bus_tier + "]";
 	}
 
 }
