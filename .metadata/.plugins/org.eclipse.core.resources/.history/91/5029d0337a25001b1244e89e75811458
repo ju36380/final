@@ -1,0 +1,89 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>msg</title>
+</head>
+<body>
+	<h1>${vo.name }이 받은 메세지</h1>
+	<table border = 1>
+		<tr>
+			<td width = 100>받은 사람</td>
+			<td width = 500>${vo.id } : ${vo.name } / 포인트 : <span id = "point"></span>p</td>
+		</tr>
+	</table>
+	<button onClick = "location.href='list'">목록으로</button>
+	<hr>
+	<table id = "tbl" border = 1></table>
+	<script id = "temp" type="text/x-handlebars-template">
+		<tr>
+			<td width = 100>보낸 사람</td>
+			<td width = 200>보낸 날짜</td>
+			<td width = 100>수신 시간</td>
+			<td width = 600>내용</td>
+			<td width = 70>삭제</td>
+		</tr>
+		{{#each .}}
+			<tr class = "row">
+				<td>{{receiver}} : {{name}}</td>
+				<td>{{sendDate}}</td>
+				<td>{{check readDate}}</td>
+				<td>{{message}}</td>
+				<td><button num = {{num}}>삭제</button></td>
+			</tr>
+		{{/each}}
+	</script>
+	<script>
+		Handlebars.registerHelper("check", function(readDate){
+			return readDate == null ? nowRead() : readDate;
+		});
+	</script>	
+</body>
+<script>
+	var receiver = "${vo.id}";
+	getReceiveList();
+	function nowRead() {
+		$.ajax({
+			type : "post",
+			url : "nowRead",
+			data : {"receiver" : receiver},
+			success : function(data) {
+				return data;
+			}
+		});
+	}
+	function getReceiveList() {
+		$.ajax({
+			type : "get",
+			url : "receiveList",
+			data : {"receiver" : receiver},
+			dataType : "json",
+			success : function(data) {
+				var temp = Handlebars.compile($("#temp").html());
+				$("#tbl").html(temp(data));
+			}
+		});
+	}
+	$("#tbl").on("click", ".row button", function(){
+		var num = $(this).attr("num");
+		if (!confirm("삭제?")){
+			return;
+		} else {
+			$.ajax({
+				type : "post",
+				url : "delete",
+				data : {"num" : num},
+				success : function(){
+					alert("삭제 완료");
+					getReceiveList();
+				}
+			});
+		}
+	});
+</script>
+</html>

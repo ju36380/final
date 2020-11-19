@@ -21,12 +21,12 @@
 	</delete>
 	
 	<select id="receiveList" resultType="com.example.domain.MessageVO">
-		select m.*, u.uname from tbl_message m, tbl_user u
+		select m.*, u.name from tbl_message m, tbl_user u
 		where receiver=#{receiver} and id = sender
 	</select>
 	
 	<update id="updateReadDate">
-		update tbl_message set readDate = now()
-		where id=#{id}
+		update tbl_message set readDate = now() 
+		where num=#{num}
 	</update>
 </mapper>

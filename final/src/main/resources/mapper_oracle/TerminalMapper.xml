@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper_oracle.TerminalMapper">
+	<insert id = "insert">
+		insert into terminal values (#{terminal_code}, #{terminal_name}, #{terminal_address})
+	</insert>
+	<update id = "update">
+		update terminal set terminal_tel = #{terminal_tel} where terminal_name = #{terminal_name}
+	</update>
+</mapper>

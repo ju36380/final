@@ -1,0 +1,7 @@
+package com.example.domain;
+
+public class ValueObject {
+	public final static int NORMAL = 3;
+	public final static int UPGRADE = 2;
+	public final static int PRIMIUM = 1;
+}

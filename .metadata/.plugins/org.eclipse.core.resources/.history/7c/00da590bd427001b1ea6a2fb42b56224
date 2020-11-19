@@ -1,0 +1,36 @@
+package com.example.domain;
+
+public class BusVO {
+	private String bCode, status;
+	private int sNum;
+
+	public String getbCode() {
+		return bCode;
+	}
+
+	public void setbCode(String bCode) {
+		this.bCode = bCode;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public int getsNum() {
+		return sNum;
+	}
+
+	public void setsNum(int sNum) {
+		this.sNum = sNum;
+	}
+
+	@Override
+	public String toString() {
+		return "BusVO [bCode=" + bCode + ", status=" + status + ", sNum=" + sNum + "]";
+	}
+
+}

@@ -1,0 +1,39 @@
+package com.example.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.domain.MessageVO;
+import com.example.mapper.MessageMapper;
+import com.example.mapper.UserMapper;
+
+@RestController
+public class MessageController {
+
+	@Autowired
+	MessageMapper msg;
+
+	@Autowired
+	UserMapper user;
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public void insert(String sender, String receiver, String message) {
+		MessageVO vo = new MessageVO();
+		vo.setMessage(message);
+		vo.setSender(sender);
+		vo.setReceiver(receiver);
+		msg.insert(vo);
+	}
+
+	@RequestMapping(value = "/sendList")
+	public List<MessageVO> list(String sender) {
+		return msg.sendList(sender);
+	}
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public void delete(int num) {
+		msg.delete(num);
+	}
+}

@@ -1,0 +1,64 @@
+package com.example.domain;
+
+import java.util.Date;
+
+public class MessageVO {
+	private int num;
+	private String receiver, sender, message;
+	private Date sendDate, readDate;
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public String getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
+
+	public String getSender() {
+		return sender;
+	}
+
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Date getSendDate() {
+		return sendDate;
+	}
+
+	public void setSendDate(Date sendDate) {
+		this.sendDate = sendDate;
+	}
+
+	public Date getReadDate() {
+		return readDate;
+	}
+
+	public void setReadDate(Date readDate) {
+		this.readDate = readDate;
+	}
+
+	@Override
+	public String toString() {
+		return "MessageVO [num=" + num + ", receiver=" + receiver + ", sender=" + sender + ", message=" + message
+				+ ", sendDate=" + sendDate + ", readDate=" + readDate + "]";
+	}
+
+}

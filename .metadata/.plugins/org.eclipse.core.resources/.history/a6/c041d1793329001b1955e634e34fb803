@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>등록</title>
+</head>
+<body>
+	<h1>등록</h1>
+	<form name = "frm" action = "insert" method = "post" enctype = "multipart/form-data">
+		<table border = 1>
+			<tr>
+				<td width = 100>이름</td>
+				<td><input type = "text" name = "pName" size = 50/></td>
+			</tr>
+			<tr>
+				<td width = 100>이미지</td>
+				<td width = 500>
+					<img src = "http://placehold.it/150x120" id = "image" width = 150/>
+					<br><br>
+					<input type = "file" name = "file"/>
+				</td>
+			</tr>
+			<tr>
+				<td width = 100>가격</td>
+				<td><input type = "text" name = "price"/></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

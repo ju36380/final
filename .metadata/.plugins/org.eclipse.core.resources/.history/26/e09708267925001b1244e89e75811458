@@ -1,0 +1,24 @@
+package com.example.mapper;
+
+import java.util.Date;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.example.domain.MessageVO;
+
+public interface MessageMapper {
+	public void insert(MessageVO vo);
+
+	public List<MessageVO> sendList(String sender);
+
+	public List<MessageVO> receiveList(String receiver);
+
+	public MessageVO receiveRead(String receiver);
+
+	public void delete(int num);
+
+	public void nowRead(String receiver);
+
+	public int readCount(String sender);
+}

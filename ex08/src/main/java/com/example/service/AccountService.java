@@ -1,0 +1,34 @@
+package com.example.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.example.domain.TradeVO;
+import com.example.mapper.AccountMapper;
+import com.example.mapper.TradeMapper;
+
+@Service
+public class AccountService {
+
+	@Autowired
+	AccountMapper aMapper;
+
+	@Autowired
+	TradeMapper tMapper;
+
+	@Transactional
+	public void trade(String ano, String type, String tradeNo, double amount) {
+		TradeVO tvo = new TradeVO();
+		tvo.setAno(ano);
+		tvo.setType(type);
+		tvo.setTradeNo(tradeNo);
+		tvo.setAmount(amount);
+		tMapper.insert(tvo);
+		tvo.setAno(tradeNo);
+		tvo.setTradeNo(ano);
+		tvo.setType(type.equals("입금") ? "출금" : "입금");
+		tMapper.insert(tvo);
+		aMapper.update(ano, type.equals("입금") ? amount : -amount);
+		aMapper.update(tradeNo, type.equals("입금") ? -amount : amount);
+	}
+}

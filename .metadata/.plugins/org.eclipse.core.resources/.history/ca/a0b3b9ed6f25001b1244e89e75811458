@@ -1,0 +1,17 @@
+package com.example.mapper;
+
+import java.util.List;
+
+import com.example.domain.MessageVO;
+
+public interface MessageMapper {
+	public void insert(MessageVO vo);
+
+	public List<MessageVO> sendList(String sender);
+
+	public List<MessageVO> receiveList(String receiver);
+
+	public void delete(int num);
+
+	public void nowRead(String id);
+}

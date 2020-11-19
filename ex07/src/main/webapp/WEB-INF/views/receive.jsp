@@ -28,7 +28,6 @@
 		<tr>
 			<td width=100>보낸 사람</td>
 			<td width=300>내용</td>
-			<td width=100>보낸 날짜</td>
 		</tr>
 	</table>
 	<br>

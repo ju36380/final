@@ -1,0 +1,61 @@
+package com.example.controller;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.example.domain.PlatformVO;
+import com.example.domain.TerminalVO;
+import com.example.mapper_oracle.PlatformMapper;
+
+@RunWith(SpringJUnit4ClassRunner.class) // ���� SpringJUnit4ClassRunner.class
+										// import�Ѵ�.
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" })
+
+public class Tst {
+	@Autowired
+	public PlatformMapper mapper;
+
+	@Test
+	public void run() {
+		PlatformVO vo = new PlatformVO();
+		Map<String, String> map = new LinkedHashMap<>();
+		map.put("서울", "00000001 00000002");
+		map.put("인천", "00000003");
+		map.put("경기", "00000004 00000005 00000006");
+		map.put("강원", "00000007 00000008 00000009");
+		map.put("충남", "00000010 00000011 00000012");
+		map.put("충북", "00000013 00000014");
+		map.put("전남", "00000015 00000016 00000017");
+		map.put("전북", "00000018 00000019 00000020");
+		map.put("경남", "00000021 00000022 00000023");
+		map.put("경북", "00000024 00000025 00000026");
+		String[] terminal_code;
+		int i = 1;
+		int j = 6;
+		String now = "경기";
+		for (String name : map.keySet()) {
+			if (!name.equals(now)) {
+				vo.setPlatform_code(String.format("%08d", i));
+				vo.setStart_terminal_code(String.format("%08d", j));
+				terminal_code = map.get(name).split(" ");
+				for (String tCode : terminal_code) {
+					vo.setDest_terminal_code(tCode);
+					mapper.insert(vo);
+				}
+				i++;
+			}
+		}
+	}
+
+	@Test
+	public void r() {
+		mapper.getTerminalList();
+	}
+}

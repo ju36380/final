@@ -1,0 +1,7 @@
+package com.example.mapper_oracle;
+
+import org.apache.ibatis.annotations.Param;
+
+public interface BusMapper {
+	public void insert(BusVO vo);
+}

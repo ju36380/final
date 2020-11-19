@@ -1,0 +1,47 @@
+package com.example.domain;
+
+import java.util.Date;
+
+public class AccountVO {
+	private String ano, name;
+	private Date openDate;
+	private double balabce;
+
+	public String getAno() {
+		return ano;
+	}
+
+	public void setAno(String ano) {
+		this.ano = ano;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getOpenDate() {
+		return openDate;
+	}
+
+	public void setOpenDate(Date openDate) {
+		this.openDate = openDate;
+	}
+
+	public double getBalabce() {
+		return balabce;
+	}
+
+	public void setBalabce(double balabce) {
+		this.balabce = balabce;
+	}
+
+	@Override
+	public String toString() {
+		return "AccountVO [ano=" + ano + ", name=" + name + ", openDate=" + openDate + ", balabce=" + balabce + "]";
+	}
+
+}

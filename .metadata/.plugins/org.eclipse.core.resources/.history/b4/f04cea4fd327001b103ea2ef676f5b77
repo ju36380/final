@@ -1,0 +1,43 @@
+package com.example.domain;
+
+public class BusVO {
+	private String cCode, bCode, bTier, bStatus;
+
+	public String getcCode() {
+		return cCode;
+	}
+
+	public void setcCode(String cCode) {
+		this.cCode = cCode;
+	}
+
+	public String getbCode() {
+		return bCode;
+	}
+
+	public void setbCode(String bCode) {
+		this.bCode = bCode;
+	}
+
+	public String getbTier() {
+		return bTier;
+	}
+
+	public void setbTier(String bTier) {
+		this.bTier = bTier;
+	}
+
+	public String getbStatus() {
+		return bStatus;
+	}
+
+	public void setbStatus(String bStatus) {
+		this.bStatus = bStatus;
+	}
+
+	@Override
+	public String toString() {
+		return "BusVO [cCode=" + cCode + ", bCode=" + bCode + ", bTier=" + bTier + ", bStatus=" + bStatus + "]";
+	}
+
+}

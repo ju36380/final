@@ -1,0 +1,54 @@
+package com.example.controller;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.domain.MessageVO;
+import com.example.mapper.MessageMapper;
+import com.example.service.UserService;
+
+@RestController
+public class MessageController {
+
+	@Autowired
+	MessageMapper mapper;
+
+	@Autowired
+	UserService service;
+
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public void insert(String sender, String receiver, String message) {
+		MessageVO vo = new MessageVO();
+		vo.setMessage(message);
+		vo.setSender(sender);
+		vo.setReceiver(receiver);
+		service.insert(vo);
+	}
+
+	@RequestMapping(value = "/sendList")
+	public List<MessageVO> list(String sender) {
+		return mapper.sendList(sender);
+	}
+
+	@RequestMapping(value = "/nowRead", method = RequestMethod.POST)
+	public String nowRead(Date now, String receiver) {
+		mapper.nowRead(receiver);
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(mapper.receiveRead(receiver).getReadDate());
+	}
+
+	@RequestMapping(value = "/receiveList")
+	public List<MessageVO> receive(String receiver) {
+		return mapper.receiveList(receiver);
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public void delete(int num) {
+		mapper.delete(num);
+	}
+}
